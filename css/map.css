@@ -1,0 +1,76 @@
+/* The sidebar menu */
+.sidebar {
+    height: 35vh; /* 100% Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: relative; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.5);
+    overflow-x: hidden; /* Disable horizontal scroll */
+    overflow-y: scroll;
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
+}
+
+/* The sidebar links */
+.sidebar button {
+    padding: 8px 8px 8px 8px;
+    text-decoration: none;
+    font-size: 16px;
+    color: #007bff;
+    display: block;
+    z-index: 1; /* Stay on top */
+    transition: 0.3s;
+}
+
+.sidebar button:active
+{
+    color: #ffffff;
+    background-color: #007bff;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidebar button:hover {
+    color: #ffffff;
+    background-color: #007bff;
+}
+
+.sidebar .nestedDiv{
+    padding: 0 0 0 32px;
+}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+    transition: margin-left .5s; /* If you want a transition effect */
+    padding: 20px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .sidebar {padding-top: 15px;}
+    .sidebar button {font-size: 18px;}
+}
+
+#main
+{
+    overflow: scroll;
+    padding: 0;
+    height: 90vh;
+}
+
+#container
+{
+    position: relative;
+}
+
+#backgroundImage
+{
+    padding: 0;
+    margin: 0;
+    border: 0;
+    background: transparent;
+    position: relative;
+    top: 10vh;
+    left: 0;
+    display: block;
+}

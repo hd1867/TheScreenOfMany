@@ -1,0 +1,55 @@
+body
+{
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.parent
+{
+    display: grid;
+    grid-template: auto 1fr auto / auto 1fr auto;
+}
+
+.header
+{
+    padding: 2rem;
+    grid-column: 1 / 4;
+}
+
+.left-side
+{
+    grid-column: 1 / 2;
+}
+
+.main
+{
+    grid-column: 2 / 3;
+}
+
+.right-side
+{
+    grid-column: 3 / 4;
+}
+
+.footer
+{
+    grid-column: 1 / 4;
+}
+
+.iobutton
+{
+    outline-color: powderblue;
+    outline-width: thin;
+}
+
+#notesArea
+{
+    width: 100%;
+    height: available;
+}
+
+#intro
+{
+    padding: 5vw;
+}

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>The Screen Of Many</title>
+    <script>let $ = require('jquery');</script>
+    <script src="https://unpkg.com/konva@6.0.0/konva.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/map.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link" href="index.html">Welcome</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="notes.html">Notes</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" href="map.html">Maps</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="media.html">Media</a>
+        </li>
+    </ul>
+    <div class="parent">
+        <div class="left-side" style="overflow-y: auto;">
+            <div class="btn-group-vertical">
+                <button class="openbtn btn btn-outline-primary" onclick="toggleNav()">&#9776;</button>
+                <button class="openbtn btn btn-outline-primary" onclick="toggleRoller()">&#8855;</button>
+            </div>
+            <div id="rollerSidebar" class="sidebar" style="overflow-x: auto">
+                <label for="rollNum" style="padding: 8px">#: </label>
+                <input type="text" id="rollNum" name="rollNum" size="3" maxlength="3" value="0">
+                <label for="rollConst" style="padding: 8px">+ </label>
+                <input type="text" id="rollConst" name="rollConst" size="3" maxlength="3" value="0">
+                <div class="btn-group" data-toggle="buttons" style="padding: 8px">
+                    <label class="btn btn-sm btn-outline-primary">
+                        <input type="radio" name="rollOptions" id="d2" value="2" autocomplete="off">d2
+                    </label>
+                    <label class="btn btn-sm btn-outline-primary">
+                        <input type="radio" name="rollOptions" id="d4" value="4" autocomplete="off">d4
+                    </label>
+                    <label class="btn btn-sm btn-outline-primary">
+                        <input type="radio" name="rollOptions" id="d6" value="6" autocomplete="off">d6
+                    </label>
+                    <label class="btn btn-sm btn-outline-primary">
+                        <input type="radio" name="rollOptions" id="d8" value="8" autocomplete="off">d8
+                    </label>
+                    <label class="btn btn-sm btn-outline-primary">
+                        <input type="radio" name="rollOptions" id="d10" value="10" autocomplete="off">d10
+                    </label>
+                    <label class="btn btn-sm btn-outline-primary">
+                        <input type="radio" name="rollOptions" id="d12" value="12" autocomplete="off">d12
+                    </label>
+                    <label class="btn btn-sm btn-outline-primary">
+                        <input type="radio" name="rollOptions" id="d20" value="20" autocomplete="off">d20
+                    </label>
+                    <label class="btn btn-sm btn-outline-primary">
+                        <input type="radio" name="rollOptions" id="d100" value="100" autocomplete="off">d100
+                    </label>
+                </div>
+                    <button class="btn btn-lg btn-primary" id="rollButton" onclick="rollDice()" style="padding-left: 16px; padding-right: 16px; color:#ffffff;">Roll</button>
+                    <h4 id="rollVal"></h4>
+            </div>
+            <div id="codexSidebar" class="sidebar">
+                <nav class="navbar">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search" onkeyup="" aria-label="Search" style="width: 80%" id="searchValue">
+                </nav>
+                <button class="btn" id="spellsButton" onclick="toggleSpells()">Spells</button>
+                <div id="spellsDiv" class="nestedDiv"></div>
+                <button class="btn" id="monstersButton" onclick="toggleMonsters()">Monsters</button>
+                <div id="monstersDiv" class="nestedDiv"></div>
+                <button class="btn" id="backgroundsButton" onclick="toggleBackgrounds()">Backgrounds</button>
+                <div id="backgroundsDiv" class="nestedDiv"></div>
+                <button class="btn" id="planesButton" onclick="togglePlanes()">Planes</button>
+                <div id="planesDiv" class="nestedDiv"></div>
+                <button class="btn" id="generalButton" onclick="toggleGeneral()">General</button>
+                <div id="generalDiv" class="nestedDiv"></div>
+                <button class="btn" id="featsButton" onclick="toggleFeats()">Feats</button>
+                <div id="featsDiv" class="nestedDiv"></div>
+                <button class="btn" id="conditionsButton" onclick="toggleConditions()">Conditions</button>
+                <div id="conditionsDiv" class="nestedDiv"></div>
+                <button class="btn" id="racesButton" onclick="toggleRaces()">Races</button>
+                <div id="racesDiv" class="nestedDiv"></div>
+                <button class="btn" id="classesButton" onclick="toggleClasses()">Classes</button>
+                <div id="classesDiv" class="nestedDiv"></div>
+                <button class="btn" id="magicitemsButton" onclick="toggleMagicItems()">Magic Items</button>
+                <div id="magicitemsDiv" class="nestedDiv"></div>
+                <button class="btn" id="weaponsButton" onclick="toggleWeapons()">Weapons</button>
+                <div id="weaponsDiv" class="nestedDiv"></div>
+            </div>
+            <div id="codexDisplay" class="sidebar">
+                <h4 id="pageTitle"></h4>
+                <div id="pageContent"></div>
+            </div>
+        </div>
+        <div class="main" id="main">
+            <img src="" alt="" id="backgroundImage">
+            <div id="container"></div>
+        </div>
+        <div class="right-side" style="padding-left: 16px; padding-right: 16px">
+            <button class="btn btn-outline-primary" onclick="drawBackground()">Load Background</button>
+            <button class="btn btn-outline-primary" onclick="drawToken()">Load Token</button>
+            <ul id="initiativeTracker" class="list-group" style="padding-top: 32px">
+            </ul>
+            <div class="btn-group" style="padding-left: 30px; padding-bottom: 8px">
+                <button class="btn btn-primary" onclick="nextRound()">Next Round</button>
+                <button class="btn btn-primary" onclick="prevRound()">Prev Round</button>
+            </div>
+            <div>
+                <label for="combatantName">Name: </label>
+                <input id="combatantName" name="combatantName" type="text">
+            </div>
+            <div>
+                <label for="initiative">Initiative: </label>
+                <input id="initiative" name="initiative" type="text" size="2" maxlength="2">
+                <button class="btn btn-primary" onclick="addCombatant()">Add Combatant</button>
+            </div>
+
+        </div>
+    </div>
+</body>
+<script src="js/codex.js"></script>
+<script src="js/map.js"></script>
+
+</html>
